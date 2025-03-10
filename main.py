@@ -14,10 +14,10 @@ matuge_path = os.path.join(f"{downloads_folder}/csvs", 'matuge_output.csv')
 relax_path = os.path.join(f"{downloads_folder}/csvs", 'relax_output.csv')
 esthe_path = os.path.join(f"{downloads_folder}/csvs", 'esthe_output.csv')
 
-neiru_c_path = os.path.join(downloads_folder, 'neiru_kanryou.csv')
-matuge_c_path = os.path.join(downloads_folder, 'matuge_kanryou.csv')
-relax_c_path = os.path.join(downloads_folder, 'relax_kanryou.csv')
-esthe_c_path = os.path.join(downloads_folder, 'esthe_kanryou.csv')
+neiru_c_path = os.path.join(f"{downloads_folder}/csvs", 'neiru_kanryou.csv')
+matuge_c_path = os.path.join(f"{downloads_folder}/csvs", 'matuge_kanryou.csv')
+relax_c_path = os.path.join(f"{downloads_folder}/csvs", 'relax_kanryou.csv')
+esthe_c_path = os.path.join(f"{downloads_folder}/csvs", 'esthe_kanryou.csv')
 
 # Mapping of prefecture numbers to names
 PREFECTURES = {
