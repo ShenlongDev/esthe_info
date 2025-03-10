@@ -1,23 +1,18 @@
-import tkinter as tk
-from tkinter import filedialog, messagebox
 import time
 import math
 import csv
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from tkinter import messagebox
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import os
 
 # Construct the full path to the file
 downloads_folder = os.path.join(os.path.expanduser('~'), 'Downloads')
 
-neiru_path = os.path.join(downloads_folder, 'neiru_output.csv')
-matuge_path = os.path.join(downloads_folder, 'matuge_output.csv')
-relax_path = os.path.join(downloads_folder, 'relax_output.csv')
-esthe_path = os.path.join(downloads_folder, 'esthe_output.csv')
+neiru_path = os.path.join(f"{downloads_folder}/csvs", 'neiru_output.csv')
+matuge_path = os.path.join(f"{downloads_folder}/csvs", 'matuge_output.csv')
+relax_path = os.path.join(f"{downloads_folder}/csvs", 'relax_output.csv')
+esthe_path = os.path.join(f"{downloads_folder}/csvs", 'esthe_output.csv')
 
 neiru_c_path = os.path.join(downloads_folder, 'neiru_kanryou.csv')
 matuge_c_path = os.path.join(downloads_folder, 'matuge_kanryou.csv')
@@ -52,9 +47,9 @@ def get_shop_urls():
     
     for i in range(1, 48):
         # pref_url = f"https://beauty.hotpepper.jp/g-nail/pre{str(i).zfill(2)}/"
-        pref_url = f"https://beauty.hotpepper.jp/g-eyelash/pre{str(i).zfill(2)}/"
+        # pref_url = f"https://beauty.hotpepper.jp/g-eyelash/pre{str(i).zfill(2)}/"
         # pref_url = f"https://beauty.hotpepper.jp/relax/pre{str(i).zfill(2)}/"
-        # pref_url = f"https://beauty.hotpepper.jp/esthe/pre{str(i).zfill(2)}/"
+        pref_url = f"https://beauty.hotpepper.jp/esthe/pre{str(i).zfill(2)}/"
         
         driver.get(pref_url)
         time.sleep(5)
@@ -65,9 +60,9 @@ def get_shop_urls():
         
         for j in range(1, page_num + 1):
             # driver.get(f"https://beauty.hotpepper.jp/g-nail/pre{str(i).zfill(2)}/PN{j}")
-            driver.get(f"https://beauty.hotpepper.jp/g-eyelash/pre{str(i).zfill(2)}/PN{j}")
+            # driver.get(f"https://beauty.hotpepper.jp/g-eyelash/pre{str(i).zfill(2)}/PN{j}")
             # driver.get(f"https://beauty.hotpepper.jp/relax/pre{str(i).zfill(2)}/PN{j}")
-            # driver.get(f"https://beauty.hotpepper.jp/esthe/pre{str(i).zfill(2)}/PN{j}")
+            driver.get(f"https://beauty.hotpepper.jp/esthe/pre{str(i).zfill(2)}/PN{j}")
             
             url_lis = driver.find_elements(By.CSS_SELECTOR, "li.searchListCassette")
             
@@ -77,7 +72,7 @@ def get_shop_urls():
                     print(shop_url)
 
                     data = {
-                        "エステ種別": "ネイル",
+                        "エステ種別": "エステ",
                         "都道府県": PREFECTURES[i],
                         "URL": shop_url,
                         "店舗名": "",
@@ -225,4 +220,4 @@ def getInfo():
 
 
 if __name__ == '__main__':
-    getInfo()
+    get_shop_urls()
