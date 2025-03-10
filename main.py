@@ -52,9 +52,9 @@ def get_shop_urls():
     
     for i in range(1, 48):
         # pref_url = f"https://beauty.hotpepper.jp/g-nail/pre{str(i).zfill(2)}/"
-        # pref_url = f"https://beauty.hotpepper.jp/g-eyelash/pre{str(i).zfill(2)}/"
+        pref_url = f"https://beauty.hotpepper.jp/g-eyelash/pre{str(i).zfill(2)}/"
         # pref_url = f"https://beauty.hotpepper.jp/relax/pre{str(i).zfill(2)}/"
-        pref_url = f"https://beauty.hotpepper.jp/esthe/pre{str(i).zfill(2)}/"
+        # pref_url = f"https://beauty.hotpepper.jp/esthe/pre{str(i).zfill(2)}/"
         
         driver.get(pref_url)
         time.sleep(5)
@@ -64,7 +64,11 @@ def get_shop_urls():
         page_num = math.ceil(res_num / 20)
         
         for j in range(1, page_num + 1):
-            driver.get(f"https://beauty.hotpepper.jp/g-nail/pre{str(i).zfill(2)}/PN{j}")
+            # driver.get(f"https://beauty.hotpepper.jp/g-nail/pre{str(i).zfill(2)}/PN{j}")
+            driver.get(f"https://beauty.hotpepper.jp/g-eyelash/pre{str(i).zfill(2)}/PN{j}")
+            # driver.get(f"https://beauty.hotpepper.jp/relax/pre{str(i).zfill(2)}/PN{j}")
+            # driver.get(f"https://beauty.hotpepper.jp/esthe/pre{str(i).zfill(2)}/PN{j}")
+            
             url_lis = driver.find_elements(By.CSS_SELECTOR, "li.searchListCassette")
             
             for li in url_lis:
@@ -195,7 +199,10 @@ def getInfo():
                         time.sleep(1)
                     except:
                         print("tel exception")
-                        shop_info["equip"] = "N/A"
+                        shop_info["tel"] = "N/A"
+                        driver.close()
+                        driver.switch_to.window(driver.window_handles[0])
+                        time.sleep(1)
                     
                     scraped_data = {
                         "エステ種別": row["\ufeffエステ種別"],
