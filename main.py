@@ -172,10 +172,15 @@ def getInfo():
                         shop_info["equip"] = "N/A"
                     
                     # 有料か無料か
-                    shop_info["fee"] = "有料"
-                    
                     # クーポンメニューの項目があるかどうか
-                    shop_info["coupon"] = "あり"
+                    # shop_info["coupon"] = "あり"
+                    try:
+                        coupon_menu = mainContents.find_element(By.CSS_SELECTOR, "a.salonMenuTab.couponAndMenu")
+                        shop_info["fee"] = "有料"
+                        shop_info["coupon"] = "あり"
+                    except:
+                        shop_info["fee"] = "無料"
+                        shop_info["coupon"] = "なし"
                     
                     # 店舗電話番号
                     try:
